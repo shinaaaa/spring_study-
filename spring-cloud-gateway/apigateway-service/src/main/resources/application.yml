@@ -27,13 +27,18 @@ spring:
           predicates:
             - Path=/second-service/**
           filters:
-            - CustomFilter
+            - name: CustomFilter
+#            - AddRequestHeader=second-request, second-requet-header
+#            - AddResponseHeader=second-response, second-response-header
+            - name: LoggingFilter
+              args:
+                baseMessage: Spring Cloud Gateway Global Filter
+                preLogger: True
+                postLogger: True
       default-filters:
         - name: GlobalFilter
           args:
             baseMessage: Spring Cloud Gateway Global Filter
             preLogger: True
             postLogger: True
-#            - AddRequestHeader=second-request, second-requet-header
-#            - AddResponseHeader=second-response, second-response-header
 
